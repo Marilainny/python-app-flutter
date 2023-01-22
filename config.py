@@ -3,7 +3,7 @@
 DEBUG = True
 
 USERNAME = 'root'
-PASSWORD = 'mms4525'
+PASSWORD = ''
 SERVER = 'localhost'
 DB = 'gerenciamento_contas'
 
