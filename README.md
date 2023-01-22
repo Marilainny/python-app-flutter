@@ -56,14 +56,6 @@ service: onde cria os serviços arquivos com métodos interagindo com as operaç
 Views: define as rotas e implementação recurso API. 
 
 
-
-
-
-
-
-
-
-
 1- SEU PROJETO\venv\Scripts\activate
 2- SEU PROJETO\
 
