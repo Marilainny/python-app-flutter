@@ -3,7 +3,7 @@
 DEBUG = True #permite fazer alterações sem a necessidade de parar o servidor
 
 USERNAME = 'root'
-PASSWORD = ''
+PASSWORD = 'mms4525'
 SERVER = 'localhost'
 DB = 'gerenciamento_contas'
 
