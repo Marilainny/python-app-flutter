@@ -23,5 +23,7 @@ mi = Migrate(app, db)
 
 api = Api(app)
 
-#from .models import conta_model, operacao_model
+#importar o arquivo de model na inicialização.
+from .models import conta_model, conta_model
+
 #from .views import conta_view, operacao_view

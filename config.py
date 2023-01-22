@@ -1,6 +1,6 @@
 ''' INFORMAÇÕES DO BANCO DE DADOS'''
 
-DEBUG = True
+DEBUG = True #permite fazer alterações sem a necessidade de parar o servidor
 
 USERNAME = 'root'
 PASSWORD = 'mms4525'
