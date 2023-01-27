@@ -1,15 +1,16 @@
-'''
+"""
 Classes com atributos, get e sets que será validado na class Schema
-'''
+"""
+
 
 class Conta():
-    #construtor
+    # construtor
     def __init__(self, nome, resumo, valor):
         self.__nome = nome
         self.__resumo = resumo
         self.__valor = valor
 
-    #Gets e Sets
+    # Gets e Sets
     @property
     def nome(self):
         return self.__nome

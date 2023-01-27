@@ -1,9 +1,9 @@
-'''
+"""
 1- importar o db,
 2- Criar a classe, que estende de db Model do SQLAlchemy,
 3- Script para gerar a tabela no banco de dados.
 4- Importar biblibiotecas no __init__.py (db = SQLAlchemy(app))
-'''
+"""
 
 from api import db
 

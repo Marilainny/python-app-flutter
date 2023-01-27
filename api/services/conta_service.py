@@ -7,7 +7,7 @@ from api import db
 from ..models import conta_model
 
 def cadastrar_conta(conta):
-    conta_bd = conta_model.Conta(nome=conta.nome, resumo=conta.resumo, valor=conta.valor)
-    db.session.add(conta_bd)
+    conta_db = conta_model.Conta(nome=conta.nome, resumo=conta.resumo, valor=conta.valor)
+    db.session.add(conta_db)
     db.session.commit()
-    return conta_bd
+    return conta_db
