@@ -11,6 +11,10 @@ from api import api
 
 class ContaList(Resource):  # A classe é um recurso
 
+    def get(self):
+        contas = conta_service.listar_contas()
+        cs = conta_schema.ContaSchema(many=True) # select tabela contas
+        return make_response(cs.jsonify(contas), 201)
     def post(self):
         cs = conta_schema.ContaSchema()  # validação
         validate = cs.validate(request.json)

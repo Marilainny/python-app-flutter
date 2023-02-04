@@ -1,8 +1,6 @@
 """
 Classes com atributos, get e sets que será validado na class Schema
 """
-
-
 class Conta():
     # construtor
     def __init__(self, nome, resumo, valor):
