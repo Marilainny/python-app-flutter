@@ -4,7 +4,7 @@ from flask_restful import Resource
 from api import api
 from ..entidades import operacao
 from ..schemas import operacao_schema
-from ..services import operacao_service
+from ..services import operacao_service, conta_service
 
 class OperacaoList(Resource):
 
@@ -22,13 +22,18 @@ class OperacaoList(Resource):
             resumo = request.json["resumo"]
             custo = request.json["custo"]
             tipo = request.json["tipo"]
+            conta = request.json["conta_id"] # conta_id conforme no model.
 
-            operacao_nova = operacao.Operacao(
-                nome=nome,
-                resumo=resumo,
-                custo=custo,
-                tipo=tipo
-            )
+            if conta_service.listar_conta_id(conta) is None:
+                return make_response("Conta não existe", 404)
+            else:
+                operacao_nova = operacao.Operacao(
+                    nome=nome,
+                    resumo=resumo,
+                    custo=custo,
+                    tipo=tipo,
+                    conta=conta # conta conforme na entidade
+                )
             resultado = operacao_service.cadastrar_operacao(operacao_nova)
             return make_response(os.jsonify(resultado), 201)
 
@@ -53,7 +58,18 @@ class OperacaoDetail(Resource):
             resumo = request.json["resumo"]
             custo = request.json["custo"]
             tipo = request.json["tipo"]
-            operacao_nova = operacao.Operacao(nome=nome, resumo=resumo, custo=custo, tipo=tipo)
+            conta = request.json["conta_id"]  # conta_id conforme no model.
+
+            if conta_service.listar_conta_id(conta) is None:
+                return make_response("Conta não existe", 404)
+            else:
+                operacao_nova = operacao.Operacao(
+                    nome=nome,
+                    resumo=resumo,
+                    custo=custo,
+                    tipo=tipo,
+                    conta=conta
+                )
             resultado = operacao_service.atualizar_conta(operacao_bd, operacao_nova)
             return make_response(os.jsonify(resultado), 201)
 

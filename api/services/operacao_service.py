@@ -14,7 +14,8 @@ def cadastrar_operacao(operacao):
         nome=operacao.nome,
         resumo=operacao.resumo,
         custo=operacao.custo,
-        tipo=operacao.tipo
+        tipo=operacao.tipo,
+        conta_id=operacao.conta #conta_id conforme no model
     )
     db.session.add(operacao_db)
     db.session.commit()
@@ -24,6 +25,7 @@ def atualizar_conta(operacao, operacao_nova):
     operacao.nome = operacao_nova.nome
     operacao.resumo = operacao_nova.resumo
     operacao.custo = operacao_nova.custo
+    operacao.conta = operacao_nova.conta #conta conforme na entidade
     db.session.commit()
     return operacao
 

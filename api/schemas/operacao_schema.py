@@ -10,7 +10,9 @@ class OperacaoSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = operacao_model.Operacao
         load_instance = True
+        include_fk = True
 
         nome = fields.String(required=True)
         resumo = fields.String(required=True)
         custo = fields.Float(required=True)
+        conta_id = fields.Integer(required=True)# conta_id conforme no model.
