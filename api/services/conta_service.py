@@ -30,3 +30,23 @@ def atualizar_conta(conta, conta_nova):
 def excluir_conta(conta):
     db.session.delete(conta)
     db.session.commit()
+
+def alterar_saldo_conta(conta_id, operacao, tipo_funcao, valor_antigo=None):
+    conta = listar_conta_id(conta_id)
+    #tipo_funcao -> 1 = Cadastro de Operação
+    if tipo_funcao == 1:
+        if operacao.tipo =='entrada':
+            conta.valor += operacao.custo
+        else:
+            conta.valor -= operacao.custo
+    # tipo_funcao -> 2 = Atualização de Operação
+    elif tipo_funcao == 2:
+        if operacao.tipo == 'entrada':
+            conta.valor -= valor_antigo
+            conta.valor += operacao.custo
+        else:
+            # tipo_funcao -> 3 = Remoção de Operação
+            conta.valor += valor_antigo
+            conta.valor -= operacao.custo
+
+    db.session.commit()

@@ -70,7 +70,7 @@ class OperacaoDetail(Resource):
                     tipo=tipo,
                     conta=conta
                 )
-            resultado = operacao_service.atualizar_conta(operacao_bd, operacao_nova)
+            resultado = operacao_service.atualizar_operacao(operacao_bd, operacao_nova)
             return make_response(os.jsonify(resultado), 201)
 
     def delete(self, id):
