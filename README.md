@@ -30,6 +30,7 @@ show databases;
 use gerenciamento_contas;
 show tables;
 desc conta;
+drop table nome_tabela;
 
 7- SERVIDOR FLASK
 
@@ -43,7 +44,7 @@ config - informações do banco de dados
 
 arquivo - run para rodar o projeto
 
-7- ESTRUTURA
+7- ESTRUTURA DIRETÓRIOS
 
 entidades: classes com atributos, get e sets mesmos atributos de model e o metódo inicial
 
@@ -53,27 +54,29 @@ schemas: validação de dados, validar as regras de negócio, conversões como j
 
 service: onde cria os serviços arquivos com métodos interagindo com as operações e metódos,  orientação objetos com o banco de dados relacionais
 
-Views: define as rotas e implementação recurso API. 
-
-
-1- SEU PROJETO\venv\Scripts\activate
-2- SEU PROJETO\
-
-set FLASK_APP=api
-flask run 
-flsk db init
-flask db migrate
-flask db upgrade
-
-
-
+views: define as rotas e implementação recurso API. 
 
 ESTRUTURA
 
 PACKAGE - api
+ARQUIVO - __init__.py
 DIRETORIOS - entidades, models, schemas, services, views
-
 ARQUIVO RAIZ - config.py
+
+8 - SERVIDRO FLASK
+
+Comandos no Terminal
+
+SEU PROJETO\venv\Scripts\activate
+SEU PROJETO\
+
+set FLASK_APP=api
+flask run 
+flask db init
+flask db migrate
+flask db upgrade
+
+
 
 
 
