@@ -20,7 +20,6 @@ def atualizar_conta(conta, conta_nova):
     conta.valor = conta_nova.valor
     db.session.commit()
     return conta
-
 def cadastrar_conta(conta):
     conta_db = conta_model.Conta(nome=conta.nome, resumo=conta.resumo, valor=conta.valor)
     db.session.add(conta_db)
