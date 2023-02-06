@@ -40,3 +40,4 @@ def atualizar_operacao(operacao, operacao_nova):
 def excluir_operacao(operacao):
     db.session.delete(operacao)
     db.session.commit()
+    conta_service.alterar_saldo_conta(operacao.conta_id, operacao, 3)

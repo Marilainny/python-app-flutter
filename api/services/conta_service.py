@@ -48,5 +48,10 @@ def alterar_saldo_conta(conta_id, operacao, tipo_funcao, valor_antigo=None):
             # tipo_funcao -> 3 = Remoção de Operação
             conta.valor += valor_antigo
             conta.valor -= operacao.custo
-
+    else:
+        # tipo_funcao -> Remoção de Operação
+        if operacao.tipo.value =='entrada':
+            conta.valor -= operacao.custo
+        else:
+            conta.valor += operacao.custo
     db.session.commit()
