@@ -21,7 +21,6 @@ Flask-marshmallow
 marshmallow-sqlalchemy
 marshmallow-enum
 Flask-Restful
-Passlib
 
 6- CRIAR BANCO DE DADOS MYSQL (gerenciamento_conta)
 
