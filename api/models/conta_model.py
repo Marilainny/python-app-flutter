@@ -15,4 +15,5 @@ class Conta(db.Model):
     nome = db.Column(db.String(50), nullable=False)
     resumo = db.Column(db.String(100), nullable=False)
     valor = db.Column(db.Float, nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id")) #relacionamento com a conta
 

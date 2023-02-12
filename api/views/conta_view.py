@@ -3,7 +3,7 @@ Define as rotas e implementação recurso API, métodos como no HTTP
 """
 from ..schemas import conta_schema
 from ..entidades import conta
-from ..services import conta_service
+from ..services import conta_service, usuario_service
 from flask_restful import Resource
 from flask import request, make_response, jsonify
 from api import api
@@ -26,7 +26,11 @@ class ContaList(Resource):  # A classe é um recurso
             nome = request.json["nome"]
             resumo = request.json["resumo"]
             valor = request.json["valor"]
-            conta_nova = conta.Conta(nome=nome, resumo=resumo, valor=valor)  # dados para construtor
+            usuario = request.json["usuario_id"]
+
+            if usuario_service.listar_usuario_id(usuario) is None:
+                return make_response("Usuário não existe", 404)
+            conta_nova = conta.Conta(nome=nome, resumo=resumo, valor=valor, usuario=usuario)  # dados para construtor
             resultado = conta_service.cadastrar_conta(conta_nova)  # cadastrar a conta
             return make_response(cs.jsonify(resultado), 201)
 class ContaDetail(Resource):
