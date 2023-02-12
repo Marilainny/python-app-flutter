@@ -4,10 +4,12 @@ Define as rotas e implementação recurso API, métodos como no HTTP
 from ..schemas import conta_schema
 from ..entidades import conta
 from ..services import conta_service
+from ..decorators.autorizacao import user_conta
 from flask_restful import Resource
 from flask import request, make_response, jsonify
 from api import api
 from flask_jwt_extended import jwt_required, get_jwt_identity
+
 
 class ContaList(Resource):  # A classe é um recurso
 
@@ -32,19 +34,15 @@ class ContaList(Resource):  # A classe é um recurso
             resultado = conta_service.cadastrar_conta(conta_nova)  # cadastrar a conta
             return make_response(cs.jsonify(resultado), 201)
 class ContaDetail(Resource):
-    @jwt_required()
+    @user_conta
     def get(self, id):
         conta = conta_service.listar_conta_id(id)
-        if conta is None:
-            return make_response(jsonify("Conta não encontrada"), 404)
         cs = conta_schema.ContaSchema()
         return make_response(cs.jsonify(conta), 200)
 
-    @jwt_required()
+    @user_conta
     def put(self, id):
         conta_bd = conta_service.listar_conta_id(id)
-        if conta is None:
-            return make_response(jsonify("Conta não encontrada"), 404)
         cs = conta_schema.ContaSchema()
         validate = cs.validate(request.json)
         if validate:
@@ -57,11 +55,9 @@ class ContaDetail(Resource):
             resultado = conta_service.atualizar_conta(conta_bd, conta_nova)
             return make_response(cs.jsonify(resultado), 201)
 
-    @jwt_required()
+    @user_conta
     def delete(self, id):
         conta = conta_service.listar_conta_id(id)
-        if conta is None:
-            return make_response(jsonify("Conta não encontrada"), 404)
         conta_service.excluir_conta(conta)
         make_response(jsonify(""), 204)
 
