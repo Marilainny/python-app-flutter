@@ -5,6 +5,7 @@ from api import api
 from ..entidades import operacao
 from ..schemas import operacao_schema
 from ..services import operacao_service, conta_service
+from ..decorators.autorizacao import user_operacao
 
 class OperacaoList(Resource):
 
@@ -42,7 +43,7 @@ class OperacaoList(Resource):
             return make_response(os.jsonify(resultado), 201)
 
 class OperacaoDetail(Resource):
-    @jwt_required()
+    @user_operacao
     def get(self, id):
         operacao = operacao_service.listar_operacao_id(id)
         if operacao is None:
@@ -50,7 +51,7 @@ class OperacaoDetail(Resource):
         os = operacao_schema.OperacaoSchema()
         return make_response(os.jsonify(operacao), 200)
 
-    @jwt_required()
+    @user_operacao
     def put(self, id):
         operacao_bd = operacao_service.listar_operacao_id(id)
         if operacao is None:
@@ -79,7 +80,7 @@ class OperacaoDetail(Resource):
             resultado = operacao_service.atualizar_operacao(operacao_bd, operacao_nova)
             return make_response(os.jsonify(resultado), 201)
 
-    @jwt_required()
+    @user_operacao
     def delete(self, id):
         operacao = operacao_service.listar_operacao_id(id)
         if operacao is None:
