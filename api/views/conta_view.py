@@ -13,7 +13,8 @@ class ContaList(Resource):  # A classe é um recurso
 
     @jwt_required()
     def get(self):
-        contas = conta_service.listar_contas()
+        usuario_logado = get_jwt_identity()
+        contas = conta_service.listar_contas(usuario=usuario_logado)
         cs = conta_schema.ContaSchema(many=True) # select tabela contas
         return make_response(cs.jsonify(contas), 201)
     @jwt_required()
