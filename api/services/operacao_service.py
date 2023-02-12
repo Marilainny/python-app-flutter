@@ -1,9 +1,9 @@
 from api import db
-from ..models import operacao_model
+from ..models import operacao_model, conta_model
 from ..services import conta_service
 
-def listar_operacoes():
-    operacoes = operacao_model.Operacao.query.all()
+def listar_operacoes(usuario):
+    operacoes = operacao_model.Operacao.query.join(conta_model.Conta).filter_by(usuario_id=usuario).all()
     return operacoes
 
 def listar_operacao_id(id):
