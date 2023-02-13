@@ -5,11 +5,11 @@ from ..schemas import conta_schema
 from ..entidades import conta
 from ..services import conta_service
 from ..decorators.autorizacao import user_conta
+from ..decorators.api_key import require_apikey
 from flask_restful import Resource
 from flask import request, make_response, jsonify
 from api import api
 from flask_jwt_extended import jwt_required, get_jwt_identity
-
 
 class ContaList(Resource):  # A classe é um recurso
 
