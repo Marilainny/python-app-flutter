@@ -16,3 +16,4 @@ class OperacaoSchema(ma.SQLAlchemyAutoSchema):
         resumo = fields.String(required=True)
         custo = fields.Float(required=True)
         conta_id = fields.Integer(required=True)# conta_id conforme no model.
+        data = fields.Date(required=True)

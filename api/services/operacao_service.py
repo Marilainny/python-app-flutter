@@ -2,8 +2,8 @@ from api import db
 from ..models import operacao_model, conta_model
 from ..services import conta_service
 
-def listar_operacoes(usuario):
-    operacoes = operacao_model.Operacao.query.join(conta_model.Conta).filter_by(usuario_id=usuario).all()
+def listar_operacoes():
+    operacoes = operacao_model.Operacao.query.all()
     return operacoes
 
 def listar_operacao_id(id):
@@ -16,6 +16,7 @@ def cadastrar_operacao(operacao):
         resumo=operacao.resumo,
         custo=operacao.custo,
         tipo=operacao.tipo,
+        data=operacao.data,
         conta_id=operacao.conta #conta_id conforme no model
     )
     db.session.add(operacao_db)
@@ -31,6 +32,7 @@ def atualizar_operacao(operacao, operacao_nova):
     operacao.resumo = operacao_nova.resumo
     operacao.custo = operacao_nova.custo
     operacao.tipo = operacao_nova.tipo
+    operacao.data = operacao_nova.data
     operacao.conta = operacao_nova.conta #conta conforme na entidade
     db.session.commit()
 

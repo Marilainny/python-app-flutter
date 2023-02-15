@@ -13,5 +13,6 @@ class Operacao(db.Model):
     resumo = db.Column(db.String(100), nullable=False)
     custo = db.Column(db.Float, nullable=False)
     tipo = db.Column(db.Enum(TipoEnum), nullable=False)
+    data =db.Column(db.Date, nullable=False)
     conta_id = db.Column(db.Integer, db.ForeignKey("conta.id")) #relacionamento com a tabela Conta.
     conta = db.relationship("Conta", backref=db.backref('operacoes', lazy="dynamic"))
